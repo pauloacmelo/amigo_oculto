@@ -7,10 +7,9 @@ require 'csv'
 # JSON.stringify(phones.map((x, i) => [phones[i], names[i]]))
 
 def send_messages messages
-  # sns = Aws::SNS::Client.new({"region": "us-west-2"})
+  sns = Aws::SNS::Client.new({"region": "us-west-2"})
   messages.each do |message|
-    # sns.publish(phone_number: message.to, message: message.text)
-    puts message
+    sns.publish(phone_number: message[:to], message: message[:text])
   end
 end
 
