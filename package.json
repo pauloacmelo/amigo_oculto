@@ -1,0 +1,13 @@
+{
+  "name": "amigo_oculto",
+  "version": "1.0.0",
+  "main": "script.js",
+  "repository": "git@github.com:pauloacmelo/amigo_oculto.git",
+  "author": "Paulo André <pauloacmelo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "dotenv": "^10.0.0",
+    "twilio": "^3.71.3"
+  }
+}
