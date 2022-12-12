@@ -1,3 +1,4 @@
-participants.csv
+participants*.csv
 .env
 node_modules
+tokens

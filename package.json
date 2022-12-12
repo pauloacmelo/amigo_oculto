@@ -8,6 +8,7 @@
   "dependencies": {
     "csv-parser": "^3.0.0",
     "dotenv": "^10.0.0",
-    "twilio": "^3.71.3"
+    "twilio": "^3.71.3",
+    "venom-bot": "^4.3.7"
   }
 }
