@@ -1,5 +1,6 @@
 require("dotenv").config();
-const { startServer, closeServer, sendMessage } = require("./whatsapp");
+// const { startServer, closeServer, sendMessage } = require("./whatsapp");
+const { startServer, closeServer, sendMessage } = require("./whatsapp2.js");
 // const twilio = require("twilio");
 // const {
 //   TWILIO_NUMBER,
@@ -51,12 +52,9 @@ function invalidShuffle(array) {
 
 async function main() {
   await startServer();
-  const participants = (await readCSV(PARTICIPANTS_PATH)).filter(
-    (row) => row.role !== "AUDITOR"
-  );
-  const auditors = (await readCSV(PARTICIPANTS_PATH)).filter(
-    (row) => row.role === "AUDITOR"
-  );
+  const rawCSV = await readCSV(PARTICIPANTS_PATH);
+  const participants = rawCSV.filter((row) => row.role !== "AUDITOR");
+  const auditors = rawCSV.filter((row) => row.role === "AUDITOR");
   const shuffled = shuffle(participants);
 
   const serializedShuffle = shuffled
@@ -65,6 +63,7 @@ async function main() {
       return `${participant.name} => ${next.name}`;
     })
     .join("\n");
+  fs.writeFileSync("shuffle.json", JSON.stringify(serializedShuffle));
   const messages = []
     .concat(
       shuffled.map(({ name, phone }, index) => {
